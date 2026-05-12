@@ -17,7 +17,7 @@ const command: Command = {
         .setDescription('Número de mensajes a borrar (1-100)')
         .setRequired(true)
         .setMinValue(1)
-        .setMaxValue(100)
+        .setMaxValue(100),
     )
     .setDefaultMemberPermissions(PermissionFlagsBits.ManageMessages)
     .setDMPermission(false),

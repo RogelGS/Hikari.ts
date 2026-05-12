@@ -12,18 +12,19 @@ const command: Command = {
     .setName('timeout')
     .setDescription('Silencia temporalmente a un miembro')
     .addUserOption((option) =>
-      option.setName('objetivo').setDescription('El miembro a silenciar').setRequired(true)
+      option.setName('objetivo').setDescription('El miembro a silenciar').setRequired(true),
     )
-    .addIntegerOption((option) =>
-      option
-        .setName('duracion')
-        .setDescription('Duración del silencio en minutos')
-        .setRequired(true)
-        .setMinValue(1)
-        .setMaxValue(40320) // 28 días máximo
+    .addIntegerOption(
+      (option) =>
+        option
+          .setName('duracion')
+          .setDescription('Duración del silencio en minutos')
+          .setRequired(true)
+          .setMinValue(1)
+          .setMaxValue(40320), // 28 días máximo
     )
     .addStringOption((option) =>
-      option.setName('razon').setDescription('La razón del silencio').setRequired(false)
+      option.setName('razon').setDescription('La razón del silencio').setRequired(false),
     )
     .setDefaultMemberPermissions(PermissionFlagsBits.ModerateMembers)
     .setDMPermission(false),

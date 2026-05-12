@@ -1,8 +1,4 @@
-import {
-  SlashCommandBuilder,
-  EmbedBuilder,
-  ChatInputCommandInteraction,
-} from 'discord.js';
+import { SlashCommandBuilder, EmbedBuilder, ChatInputCommandInteraction } from 'discord.js';
 import type { Command } from '@/types';
 
 const command: Command = {
@@ -13,7 +9,7 @@ const command: Command = {
       option
         .setName('objetivo')
         .setDescription('El usuario del que quieres ver el avatar')
-        .setRequired(false)
+        .setRequired(false),
     ),
   async execute(interaction: ChatInputCommandInteraction) {
     const user = interaction.options.getUser('objetivo') || interaction.user;

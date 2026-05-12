@@ -15,10 +15,10 @@ const command: Command = {
       option
         .setName('objetivo')
         .setDescription('El usuario que quieres expulsar')
-        .setRequired(true)
+        .setRequired(true),
     )
     .addStringOption((option) =>
-      option.setName('razon').setDescription('La razón de la expulsión').setRequired(false)
+      option.setName('razon').setDescription('La razón de la expulsión').setRequired(false),
     )
     .setDefaultMemberPermissions(PermissionFlagsBits.KickMembers)
     .setDMPermission(false),

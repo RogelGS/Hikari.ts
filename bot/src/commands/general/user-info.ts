@@ -1,8 +1,4 @@
-import {
-  SlashCommandBuilder,
-  EmbedBuilder,
-  ChatInputCommandInteraction,
-} from 'discord.js';
+import { SlashCommandBuilder, EmbedBuilder, ChatInputCommandInteraction } from 'discord.js';
 import type { Command } from '@/types';
 import DiscordService from '@/services/discord.service';
 
@@ -14,11 +10,11 @@ const command: Command = {
       option
         .setName('objetivo')
         .setDescription('El usuario del que quieres ver la información')
-        .setRequired(false)
+        .setRequired(false),
     ),
   async execute(interaction: ChatInputCommandInteraction) {
     const user = interaction.options.getUser('objetivo') || interaction.user;
-    const member = interaction.guild 
+    const member = interaction.guild
       ? await DiscordService.getMemberInfo(interaction.guild, user)
       : null;
 

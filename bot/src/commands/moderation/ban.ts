@@ -12,10 +12,10 @@ const command: Command = {
     .setName('ban')
     .setDescription('Banea a un miembro del servidor')
     .addUserOption((option) =>
-      option.setName('objetivo').setDescription('El usuario que quieres banear').setRequired(true)
+      option.setName('objetivo').setDescription('El usuario que quieres banear').setRequired(true),
     )
     .addStringOption((option) =>
-      option.setName('razon').setDescription('La razón del baneo').setRequired(false)
+      option.setName('razon').setDescription('La razón del baneo').setRequired(false),
     )
     .addIntegerOption((option) =>
       option
@@ -23,7 +23,7 @@ const command: Command = {
         .setDescription('Días de mensajes a borrar (0-7)')
         .setMinValue(0)
         .setMaxValue(7)
-        .setRequired(false)
+        .setRequired(false),
     )
     .setDefaultMemberPermissions(PermissionFlagsBits.BanMembers)
     .setDMPermission(false),

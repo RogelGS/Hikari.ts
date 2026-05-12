@@ -1,8 +1,4 @@
-import {
-  SlashCommandBuilder,
-  EmbedBuilder,
-  ChatInputCommandInteraction,
-} from 'discord.js';
+import { SlashCommandBuilder, EmbedBuilder, ChatInputCommandInteraction } from 'discord.js';
 import type { Command } from '@/types';
 import DiscordService from '@/services/discord.service';
 
@@ -37,7 +33,7 @@ const command: Command = {
           inline: true,
         },
         { name: '🚀 Nivel de Boost', value: stats.premiumTier.toString(), inline: true },
-        { name: '🛡️ Verificación', value: stats.verificationLevel.toString(), inline: true }
+        { name: '🛡️ Verificación', value: stats.verificationLevel.toString(), inline: true },
       )
       .setFooter({ text: `Hikari.ts - Solicitado por ${interaction.user.username}` })
       .setTimestamp();

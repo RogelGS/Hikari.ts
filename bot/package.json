@@ -4,15 +4,18 @@
   "type": "module",
   "private": true,
   "scripts": {
-    "dev": "bun --watch src/index.ts",
+    "dev": "bun run cleanup && bun run deploy && bun run --watch src/index.ts",
     "start": "bun src/index.ts",
     "lint": "eslint .",
-    "format": "prettier --write ."
+    "format": "prettier --write .",
+    "deploy": "bun src/deploy.ts",
+    "cleanup": "bun src/cleanup-commands.ts"
   },
   "dependencies": {
-    "discord.js": "14.15.3",
-    "dotenv": "16.4.5",
-    "axios": "1.6.8"
+    "@sentry/bun": "^10.53.0",
+    "axios": "1.6.8",
+    "discord.js": "^14.17.3",
+    "dotenv": "16.4.5"
   },
   "devDependencies": {
     "@types/bun": "1.3.13",

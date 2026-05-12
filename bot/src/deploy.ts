@@ -1,10 +1,7 @@
 import { REST, Routes, type RESTPostAPIChatInputApplicationCommandsJSONBody } from 'discord.js';
-import dotenv from 'dotenv';
 import path from 'path';
 import fs from 'node:fs';
-
-dotenv.config({ path: path.resolve(process.cwd(), '../.env') });
-dotenv.config();
+import config from '@/utils/config';
 
 const commands: RESTPostAPIChatInputApplicationCommandsJSONBody[] = [];
 const foldersPath = path.join(import.meta.dirname, 'commands');
@@ -25,15 +22,18 @@ for (const folder of commandFolders) {
   }
 }
 
-const rest = new REST().setToken(process.env.DISCORD_TOKEN!);
+const rest = new REST().setToken(config.DISCORD_TOKEN);
 
 (async () => {
   try {
     console.log(`[DEPLOY] Iniciando el refresco de ${commands.length} comandos...`);
 
-    const data = (await rest.put(Routes.applicationCommands(process.env.CLIENT_ID!), {
-      body: commands,
-    })) as unknown[];
+    const data = (await rest.put(
+      Routes.applicationGuildCommands(config.CLIENT_ID, config.GUILD_ID),
+      {
+        body: commands,
+      }
+    )) as unknown[];
 
     console.log(`[DEPLOY] Se registraron ${data.length} comandos exitosamente.`);
   } catch (error) {

@@ -1,29 +1,22 @@
-import { SlashCommandBuilder } from 'discord.js';
-import axios from 'axios';
-import type { Command } from '../../types';
+import { SlashCommandBuilder, ChatInputCommandInteraction } from 'discord.js';
+import type { Command } from '@/types';
+import StatusService from '@/services/status.service';
 
 const command: Command = {
   data: new SlashCommandBuilder()
     .setName('api-status')
     .setDescription('Verifica la conexión con la API de Spring Boot'),
-  async execute(interaction) {
+  async execute(interaction: ChatInputCommandInteraction) {
     await interaction.deferReply();
 
     try {
-      // Usamos la URL de la API definida en el .env
-      const apiUrl = process.env.API_URL || 'http://localhost:8080';
-      const response = await axios.get(`${apiUrl}/api/v1/status`);
-      
-      const { status, message, version } = response.data;
-
-      await interaction.editReply({
-        content: `✅ **API Online**\n**Mensaje:** ${message}\n**Versión:** ${version}\n**Status:** ${status}`
-      });
+      const statusMessage = await StatusService.checkHealth();
+      await interaction.editReply({ content: statusMessage });
     } catch (error) {
-      console.error(error);
       await interaction.editReply({
-        content: '❌ No se pudo conectar con la API de Spring Boot. ¿Está encendida?'
+        content: `❌ ${error instanceof Error ? error.message : 'Error desconocido'}`,
       });
+      throw error;
     }
   },
 };

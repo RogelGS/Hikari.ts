@@ -1,10 +1,11 @@
 import { Client, Collection, GatewayIntentBits } from 'discord.js';
-import dotenv from 'dotenv';
 import path from 'path';
 import fs from 'node:fs';
+import config from '@/utils/config';
+import { initMonitoring, reportError } from '@/utils/monitor';
 
-dotenv.config({ path: path.resolve(process.cwd(), '../.env') });
-dotenv.config();
+// Inicializar Sentry y Monitoreo
+initMonitoring();
 
 const client = new Client({
   intents: [GatewayIntentBits.Guilds, GatewayIntentBits.GuildMessages],
@@ -49,10 +50,14 @@ for (const file of eventFiles) {
   console.log(`[LOADER] Evento cargado: ${event.name}`);
 }
 
-const token = process.env.DISCORD_TOKEN;
-if (!token) {
-  console.error('DISCORD_TOKEN is missing');
-  process.exit(1);
-}
-
+const token = config.DISCORD_TOKEN;
 client.login(token);
+
+// --- MANEJO GLOBAL DE ERRORES ---
+process.on('unhandledRejection', (reason) => {
+  reportError(reason, 'Unhandled Rejection');
+});
+
+process.on('uncaughtException', (error) => {
+  reportError(error, 'Uncaught Exception');
+});

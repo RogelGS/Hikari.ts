@@ -1,7 +1,4 @@
-import {
-  SlashCommandBuilder,
-  ChatInputCommandInteraction,
-} from 'discord.js';
+import { SlashCommandBuilder, ChatInputCommandInteraction } from 'discord.js';
 import type { Command } from '@/types';
 import { createAvatarEmbed } from '@/components/embeds/general.embed';
 
@@ -13,7 +10,7 @@ const command: Command = {
       option
         .setName('objetivo')
         .setDescription('El usuario del que quieres ver el avatar')
-        .setRequired(false)
+        .setRequired(false),
     ),
   async execute(interaction: ChatInputCommandInteraction) {
     const user = interaction.options.getUser('objetivo') || interaction.user;

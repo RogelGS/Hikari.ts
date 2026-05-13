@@ -8,7 +8,7 @@ const command: Command = {
     .setName('8ball')
     .setDescription('Hazle una pregunta a la bola 8 mágica')
     .addStringOption((option) =>
-      option.setName('pregunta').setDescription('Lo que quieres preguntar').setRequired(true)
+      option.setName('pregunta').setDescription('Lo que quieres preguntar').setRequired(true),
     ),
   async execute(interaction: ChatInputCommandInteraction) {
     const question = interaction.options.getString('pregunta', true);

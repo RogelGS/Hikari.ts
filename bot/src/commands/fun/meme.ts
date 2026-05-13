@@ -17,11 +17,11 @@ const command: Command = {
           { name: 'Memes en Español', value: 'MemesEnEspanol' },
           { name: 'Dank Memes', value: 'dankmemes' },
           { name: 'Me_IRL', value: 'me_irl' },
-          { name: "Memes y mas Memes", value: "MemesymasMemes" },
-          { name: "Dank Hispano", value: "DankHispano" },
-          { name: "Cursed Comments", value: "CursedComments" },
-          { name: "Memes wholesomes", value: "wholesomememes" },
-        )
+          { name: 'Memes y mas Memes', value: 'MemesymasMemes' },
+          { name: 'Dank Hispano', value: 'DankHispano' },
+          { name: 'Cursed Comments', value: 'CursedComments' },
+          { name: 'Memes wholesomes', value: 'wholesomememes' },
+        ),
     ),
   async execute(interaction: ChatInputCommandInteraction) {
     await interaction.deferReply();

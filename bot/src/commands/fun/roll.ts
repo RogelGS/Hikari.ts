@@ -13,7 +13,7 @@ const command: Command = {
         .setDescription('Cantidad de dados (1-10)')
         .setMinValue(1)
         .setMaxValue(10)
-        .setRequired(false)
+        .setRequired(false),
     )
     .addIntegerOption((option) =>
       option
@@ -21,7 +21,7 @@ const command: Command = {
         .setDescription('Cantidad de caras por dado')
         .setMinValue(2)
         .setMaxValue(100)
-        .setRequired(false)
+        .setRequired(false),
     ),
   async execute(interaction: ChatInputCommandInteraction) {
     const amount = interaction.options.getInteger('dados') || 1;

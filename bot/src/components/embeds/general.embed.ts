@@ -19,7 +19,7 @@ export const createServerInfoEmbed = (stats: GuildStats, requestedBy: User) => {
         inline: true,
       },
       { name: '🚀 Nivel de Boost', value: stats.premiumTier.toString(), inline: true },
-      { name: '🛡️ Verificación', value: stats.verificationLevel.toString(), inline: true }
+      { name: '🛡️ Verificación', value: stats.verificationLevel.toString(), inline: true },
     )
     .setFooter({ text: `Hikari.ts - Solicitado por ${requestedBy.username}` })
     .setTimestamp();
@@ -51,7 +51,7 @@ export const createUserInfoEmbed = (user: User, member: GuildMember | null) => {
         name: '📅 Cuenta creada',
         value: `<t:${Math.floor(user.createdTimestamp / 1000)}:R>`,
         inline: true,
-      }
+      },
     )
     .setTimestamp();
 
@@ -65,7 +65,7 @@ export const createUserInfoEmbed = (user: User, member: GuildMember | null) => {
       {
         name: '🎭 Roles',
         value: member.roles.cache.map((role) => role.name).join(', ') || 'Ninguno',
-      }
+      },
     );
   }
 

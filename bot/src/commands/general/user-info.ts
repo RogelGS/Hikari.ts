@@ -11,7 +11,7 @@ const command: Command = {
       option
         .setName('objetivo')
         .setDescription('El usuario del que quieres ver la información')
-        .setRequired(false)
+        .setRequired(false),
     ),
   async execute(interaction: ChatInputCommandInteraction) {
     const user = interaction.options.getUser('objetivo') || interaction.user;

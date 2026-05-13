@@ -45,7 +45,7 @@ export const createDiceEmbed = (results: number[], sides: number) => {
     .setTitle(`🎲 Dados de ${sides} caras`)
     .addFields(
       { name: 'Resultados', value: results.join(', ') },
-      { name: 'Total', value: total.toString() }
+      { name: 'Total', value: total.toString() },
     )
     .setColor(0x3498db)
     .setTimestamp();
@@ -85,7 +85,7 @@ export const createSlapEmbed = (slapper: User, slapped: User) => {
     `Le da una cachetada bien fuerte a ${slapped.username} con la mano abierta`,
     `Le da un sape en la cabeza a ${slapped.username} con la mano abierta`,
     `Le da un combo de bofetadas a ${slapped.username} con la mano abierta`,
-    `Le sume la mollera a ${slapped.username}`
+    `Le sume la mollera a ${slapped.username}`,
   ];
   const phrase = phrases[Math.floor(Math.random() * phrases.length)];
 

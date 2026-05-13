@@ -4,7 +4,9 @@ import { fetchRandomCat } from '@/api/fun.api';
 import { createAnimalEmbed } from '@/components/embeds/fun.embed';
 
 const command: Command = {
-  data: new SlashCommandBuilder().setName('cat').setDescription('Envía una imagen aleatoria de un gato'),
+  data: new SlashCommandBuilder()
+    .setName('cat')
+    .setDescription('Envía una imagen aleatoria de un gato'),
   async execute(interaction: ChatInputCommandInteraction) {
     await interaction.deferReply();
     try {

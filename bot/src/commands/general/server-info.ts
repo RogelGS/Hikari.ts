@@ -1,8 +1,4 @@
-import {
-  SlashCommandBuilder,
-  ChatInputCommandInteraction,
-  MessageFlags,
-} from 'discord.js';
+import { SlashCommandBuilder, ChatInputCommandInteraction, MessageFlags } from 'discord.js';
 import type { Command } from '@/types';
 import DiscordService from '@/services/discord.service';
 import { createServerInfoEmbed } from '@/components/embeds/general.embed';

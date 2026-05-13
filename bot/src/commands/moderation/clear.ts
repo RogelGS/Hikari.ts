@@ -3,6 +3,7 @@ import {
   ChatInputCommandInteraction,
   PermissionFlagsBits,
   TextChannel,
+  MessageFlags,
 } from 'discord.js';
 import type { Command } from '@/types';
 import ModerationService from '@/services/moderation.service';
@@ -17,7 +18,7 @@ const command: Command = {
         .setDescription('Número de mensajes a borrar (1-100)')
         .setRequired(true)
         .setMinValue(1)
-        .setMaxValue(100)
+        .setMaxValue(100),
     )
     .setDefaultMemberPermissions(PermissionFlagsBits.ManageMessages)
     .setDMPermission(false),
@@ -29,12 +30,12 @@ const command: Command = {
       const deletedCount = await ModerationService.clearMessages(channel, amount);
       await interaction.reply({
         content: `✅ Se han borrado **${deletedCount}** mensajes correctamente.`,
-        ephemeral: true,
+        flags: [MessageFlags.Ephemeral],
       });
     } catch (error) {
       await interaction.reply({
         content: `❌ ${error instanceof Error ? error.message : 'Ocurrió un error al borrar los mensajes.'}`,
-        ephemeral: true,
+        flags: [MessageFlags.Ephemeral],
       });
     }
   },

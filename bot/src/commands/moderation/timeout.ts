@@ -3,6 +3,7 @@ import {
   ChatInputCommandInteraction,
   PermissionFlagsBits,
   GuildMember,
+  MessageFlags,
 } from 'discord.js';
 import type { Command } from '@/types';
 import ModerationService from '@/services/moderation.service';
@@ -12,18 +13,19 @@ const command: Command = {
     .setName('timeout')
     .setDescription('Silencia temporalmente a un miembro')
     .addUserOption((option) =>
-      option.setName('objetivo').setDescription('El miembro a silenciar').setRequired(true)
+      option.setName('objetivo').setDescription('El miembro a silenciar').setRequired(true),
     )
-    .addIntegerOption((option) =>
-      option
-        .setName('duracion')
-        .setDescription('Duración del silencio en minutos')
-        .setRequired(true)
-        .setMinValue(1)
-        .setMaxValue(40320) // 28 días máximo
+    .addIntegerOption(
+      (option) =>
+        option
+          .setName('duracion')
+          .setDescription('Duración del silencio en minutos')
+          .setRequired(true)
+          .setMinValue(1)
+          .setMaxValue(40320), // 28 días máximo
     )
     .addStringOption((option) =>
-      option.setName('razon').setDescription('La razón del silencio').setRequired(false)
+      option.setName('razon').setDescription('La razón del silencio').setRequired(false),
     )
     .setDefaultMemberPermissions(PermissionFlagsBits.ModerateMembers)
     .setDMPermission(false),
@@ -35,7 +37,7 @@ const command: Command = {
     if (!target) {
       await interaction.reply({
         content: '❌ No se pudo encontrar a ese miembro.',
-        ephemeral: true,
+        flags: [MessageFlags.Ephemeral],
       });
       return;
     }
@@ -48,7 +50,7 @@ const command: Command = {
     } catch (error) {
       await interaction.reply({
         content: `❌ ${error instanceof Error ? error.message : 'Error al intentar silenciar al usuario.'}`,
-        ephemeral: true,
+        flags: [MessageFlags.Ephemeral],
       });
     }
   },

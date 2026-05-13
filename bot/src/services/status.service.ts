@@ -11,7 +11,7 @@ export const StatusService = {
     try {
       const data: ApiStatusResponse = await getApiStatus();
       return `✅ **API Online**\n**Mensaje:** ${data.message}\n**Versión:** ${data.version}\n**Status:** ${data.status}`;
-    } catch (error) {
+    } catch (_error) {
       // Re-lanzamos para que el comando o el monitor lo manejen si es necesario
       throw new Error('No se pudo conectar con la API de Spring Boot. ¿Está encendida?');
     }

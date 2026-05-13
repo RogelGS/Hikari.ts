@@ -32,7 +32,7 @@ const rest = new REST().setToken(config.DISCORD_TOKEN);
       Routes.applicationGuildCommands(config.CLIENT_ID, config.GUILD_ID),
       {
         body: commands,
-      }
+      },
     )) as unknown[];
 
     console.log(`[DEPLOY] Se registraron ${data.length} comandos exitosamente.`);

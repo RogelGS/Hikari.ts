@@ -10,6 +10,17 @@ export interface Command {
   execute: (_interaction: ChatInputCommandInteraction) => Promise<void>;
 }
 
+export interface GuildStats {
+  id: string;
+  name: string;
+  ownerId: string;
+  memberCount: number;
+  createdTimestamp: number;
+  iconURL: string | null;
+  premiumTier: number;
+  verificationLevel: number;
+}
+
 export interface Event<K extends keyof ClientEvents> {
   name: K;
   once?: boolean;

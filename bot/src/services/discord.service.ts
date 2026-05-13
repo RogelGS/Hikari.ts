@@ -1,4 +1,5 @@
 import { Guild, GuildMember, User } from 'discord.js';
+import type { GuildStats } from '@/types';
 
 /**
  * Servicio para abstraer operaciones comunes con la API de Discord.
@@ -18,7 +19,7 @@ export const DiscordService = {
   /**
    * Obtiene estadísticas básicas de un servidor.
    */
-  getGuildStats(guild: Guild) {
+  getGuildStats(guild: Guild): GuildStats {
     return {
       id: guild.id,
       name: guild.name,

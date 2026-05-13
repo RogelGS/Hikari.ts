@@ -3,6 +3,7 @@ import {
   ChatInputCommandInteraction,
   PermissionFlagsBits,
   GuildMember,
+  MessageFlags,
 } from 'discord.js';
 import type { Command } from '@/types';
 import ModerationService from '@/services/moderation.service';
@@ -29,7 +30,7 @@ const command: Command = {
     if (!target) {
       await interaction.reply({
         content: '❌ No se pudo encontrar a ese miembro en este servidor.',
-        ephemeral: true,
+        flags: [MessageFlags.Ephemeral],
       });
       return;
     }
@@ -42,7 +43,7 @@ const command: Command = {
     } catch (error) {
       await interaction.reply({
         content: `❌ ${error instanceof Error ? error.message : 'Error al intentar expulsar al usuario.'}`,
-        ephemeral: true,
+        flags: [MessageFlags.Ephemeral],
       });
     }
   },

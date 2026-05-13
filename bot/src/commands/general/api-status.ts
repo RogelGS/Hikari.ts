@@ -1,6 +1,7 @@
 import { SlashCommandBuilder, ChatInputCommandInteraction } from 'discord.js';
 import type { Command } from '@/types';
 import StatusService from '@/services/status.service';
+import { createStatusEmbed } from '@/components/embeds/general.embed';
 
 const command: Command = {
   data: new SlashCommandBuilder()
@@ -11,7 +12,8 @@ const command: Command = {
 
     try {
       const statusMessage = await StatusService.checkHealth();
-      await interaction.editReply({ content: statusMessage });
+      const embed = createStatusEmbed(statusMessage);
+      await interaction.editReply({ embeds: [embed] });
     } catch (error) {
       await interaction.editReply({
         content: `❌ ${error instanceof Error ? error.message : 'Error desconocido'}`,
